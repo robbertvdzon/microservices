@@ -2,25 +2,25 @@ apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
   labels:
-    app: app1
-  name: app1
+    app: web-app1
+  name: web-app1
   namespace: rzo-test
 spec:
   replicas: 1
   selector:
-    app: app1
-    deploymentconfig: app1
+    app: web-app1
+    deploymentconfig: web-app1
   template:
     metadata:
       labels:
-        app: app1
-        deploymentconfig: app1
+        app: web-app1
+        deploymentconfig: web-app1
     spec:
       containers:
       - image: >-
-          docker-registry.default.svc:5000/rzo-test/app1@latest
+          docker-registry.default.svc:5000/rzo-test/web-app1@latest
         imagePullPolicy: Always
-        name: app1
+        name: web-app1
         ports:
         - containerPort: 8080
           protocol: TCP
@@ -40,9 +40,9 @@ spec:
   - imageChangeParams:
       automatic: true
       containerNames:
-      - app1
+      - web-app1
       from:
         kind: ImageStreamTag
-        name: 'app1:latest'
+        name: 'web-app1:latest'
         namespace: rzo-test
     type: ImageChange
