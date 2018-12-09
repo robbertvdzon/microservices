@@ -1,0 +1,48 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: app1
+  name: app1
+  namespace: rzo-test
+spec:
+  replicas: 1
+  selector:
+    app: app1
+    deploymentconfig: app1
+  template:
+    metadata:
+      labels:
+        app: app1
+        deploymentconfig: app1
+    spec:
+      containers:
+      - image: >-
+          docker-registry.default.svc:5000/rzo-test/app1@latest
+        imagePullPolicy: Always
+        name: app1
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        - containerPort: 8778
+          protocol: TCP
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - app1
+      from:
+        kind: ImageStreamTag
+        name: 'app1:latest'
+        namespace: rzo-test
+    type: ImageChange
