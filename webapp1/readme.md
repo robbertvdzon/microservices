@@ -8,4 +8,3 @@ oc create route edge --service=app1
 # Nieuwe versie deployen:
 mvn package
 oc start-build app1 --from-file=target\demo-0.0.1-SNAPSHOT.jar
-
