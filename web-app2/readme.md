@@ -6,4 +6,5 @@ oc create -f openshift-scripts\service.yml -n rzo-test
 oc create -f openshift-scripts\route.yml -n rzo-test
 
 # redeploy new version
+mvn package
 oc start-build web-app2 --from-file=target\web-app2-0.0.1-SNAPSHOT.jar

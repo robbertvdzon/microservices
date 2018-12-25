@@ -1,0 +1,48 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: dstatemachine
+  name: dstatemachine
+  namespace: rzo-test
+spec:
+  replicas: 1
+  selector:
+    app: dstatemachine
+    deploymentconfig: dstatemachine
+  template:
+    metadata:
+      labels:
+        app: dstatemachine
+        deploymentconfig: dstatemachine
+    spec:
+      containers:
+      - image: >-
+          docker-registry.default.svc:5000/rzo-test/dstatemachine@latest
+        imagePullPolicy: Always
+        name: dstatemachine
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        - containerPort: 8778
+          protocol: TCP
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - dstatemachine
+      from:
+        kind: ImageStreamTag
+        name: 'dstatemachine:latest'
+        namespace: rzo-test
+    type: ImageChange

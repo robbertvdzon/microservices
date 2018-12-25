@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dstatemachine
+  namespace: rzo-test
+spec:
+  ports:
+  - name: 8080-tcp
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+  selector:
+    deploymentconfig: "dstatemachine"
+  sessionAffinity: None
+  type: ClusterIP
