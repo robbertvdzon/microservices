@@ -6,7 +6,7 @@ metadata:
   name: dstatemachine
   namespace: rzo-test
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     app: dstatemachine
     deploymentconfig: dstatemachine
@@ -17,7 +17,10 @@ spec:
         deploymentconfig: dstatemachine
     spec:
       containers:
-      - image: >-
+      - env:
+        - name: zookeeperhost
+          value: rzozookeeper
+        image: >-
           docker-registry.default.svc:5000/rzo-test/dstatemachine@latest
         imagePullPolicy: Always
         name: dstatemachine
