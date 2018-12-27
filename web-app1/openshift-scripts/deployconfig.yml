@@ -17,7 +17,10 @@ spec:
         deploymentconfig: web-app1
     spec:
       containers:
-      - image: >-
+      - env:
+        - name: spring.cloud.zookeeper.connect-string
+          value: rzozookeeper:2181
+        image: >-
           docker-registry.default.svc:5000/rzo-test/web-app1@latest
         imagePullPolicy: Always
         name: web-app1

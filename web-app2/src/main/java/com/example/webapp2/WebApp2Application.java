@@ -1,11 +1,12 @@
 package com.example.webapp2;
 
-import org.apache.curator.framework.CuratorFramework;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.net.UnknownHostException;
 
 @SpringBootApplication
 @RestController
@@ -17,8 +18,7 @@ public class WebApp2Application {
     }
 
     @GetMapping
-    public String getIndex(){
-        CuratorFramework c;
-        return "Hello from app2";
+    public String getIndex() throws UnknownHostException {
+        return "Hello from " + java.net.InetAddress.getLocalHost().getHostName();
     }
 }
