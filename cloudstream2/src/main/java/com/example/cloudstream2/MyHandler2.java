@@ -1,9 +1,7 @@
-package com.example.cloudstream1;
+package com.example.cloudstream2;
 
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Processor;
-import org.springframework.cloud.stream.messaging.Sink;
 
 @EnableBinding(MyStream.class)
 public class MyHandler2 {

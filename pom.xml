@@ -11,6 +11,8 @@
     <modules>
         <module>web-app1</module>
         <module>web-app2</module>
+        <module>cloudstream1</module>
+        <module>cloudstream2</module>
     </modules>
 
 </project>

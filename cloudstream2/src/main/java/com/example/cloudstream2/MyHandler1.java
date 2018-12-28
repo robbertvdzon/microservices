@@ -1,10 +1,7 @@
-package com.example.cloudstream1;
+package com.example.cloudstream2;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Processor;
-import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.messaging.handler.annotation.SendTo;
 
 @EnableBinding(MyStream.class)

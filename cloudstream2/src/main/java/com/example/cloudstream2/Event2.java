@@ -1,4 +1,4 @@
-package com.example.cloudstream1;
+package com.example.cloudstream2;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

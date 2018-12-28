@@ -1,4 +1,4 @@
-package com.example.cloudstream1;
+package com.example.cloudstream2;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Event2 {
-    private String value3;
+public class Event1 {
+    private String value1;
+    private String value2;
 }
