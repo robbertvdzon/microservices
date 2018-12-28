@@ -1,0 +1,58 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  generation: 2
+  labels:
+    app: rzokafka
+  name: rzokafka
+  namespace: rzo-test
+spec:
+  replicas: 1
+  selector:
+    app: rzokafka
+    deploymentconfig: rzokafka
+  template:
+    metadata:
+      labels:
+        app: rzokafka
+        deploymentconfig: rzokafka
+    spec:
+      containers:
+      - image: >-
+          docker-registry.default.svc:5000/rzo-test/rzokafka@sha256:latest
+        imagePullPolicy: Always
+        name: rzokafka
+        ports:
+        - containerPort: 9092
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - rzokafka
+      from:
+        kind: ImageStreamTag
+        name: 'rzokafka:latest'
+        namespace: rzo-test
+    type: ImageChange
+status:
+  availableReplicas: 0
+  details:
+    causes:
+    - type: ConfigChange
+    message: config change
+  latestVersion: 1
+  observedGeneration: 2
+  replicas: 1
+  unavailableReplicas: 1
+  updatedReplicas: 1
