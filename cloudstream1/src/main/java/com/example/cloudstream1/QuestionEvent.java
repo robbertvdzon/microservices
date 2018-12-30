@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Event1 {
-    private String value1;
-    private String value2;
+public class QuestionEvent {
+    private String question;
 }

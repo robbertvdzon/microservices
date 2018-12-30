@@ -5,13 +5,13 @@ import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
-public interface MyStream  {
-    String INPUT = "greetings-in";
-    String OUTPUT = "greetings-out";
+public interface QuestionStream {
+    String INPUT = "question-ask";
+    String OUTPUT = "question-answer";
 
     @Input(INPUT)
-    SubscribableChannel inboundGreetings();
+    SubscribableChannel inboundQuestion();
 
     @Output(OUTPUT)
-    MessageChannel outboundGreetings();
+    MessageChannel outboundQuestion();
 }

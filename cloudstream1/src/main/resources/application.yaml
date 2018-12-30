@@ -7,9 +7,9 @@ spring:
         binder:
           brokers: localhost:9092
       bindings:
-        greetings-in:
-          destination: greetings1
+        question-in:
+          destination: questionin
           contentType: application/json
-        greetings-out:
-          destination: greetings2
+        question-out:
+          destination: questionout
           contentType: application/json
