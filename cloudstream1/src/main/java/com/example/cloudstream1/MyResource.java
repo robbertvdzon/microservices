@@ -14,7 +14,7 @@ public class MyResource {
     QuestionStream myStream;
 
     @GetMapping("/test")
-    public String test(){
+    public String test() {
         myStream.outboundQuestion()
                 .send(MessageBuilder.withPayload(new QuestionEvent("My Question")).build());
         return "question send";
@@ -24,4 +24,5 @@ public class MyResource {
     public void handle(AnswerEvent answer) {
         System.out.println("Got answer: " + answer);
     }
+
 }

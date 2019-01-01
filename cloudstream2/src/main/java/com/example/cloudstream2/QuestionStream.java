@@ -7,10 +7,14 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface QuestionStream {
     String INPUT = "question-ask";
+    String INPUT2 = "question-ask-read";
     String OUTPUT = "question-answer";
 
     @Input(INPUT)
     SubscribableChannel inboundQuestion();
+
+    @Input(INPUT2)
+    SubscribableChannel inboundQuestionRead();
 
     @Output(OUTPUT)
     MessageChannel outboundQuestion();

@@ -7,9 +7,12 @@ spring:
         binder:
           brokers: localhost:9092
       bindings:
-        question-in:
-          destination: questionin
+        question-ask:
+          destination: question-ask
           contentType: application/json
-        question-out:
-          destination: questionout
+        question-ask-read:
+          destination: question-ask
+          contentType: application/json
+        question-answer:
+          destination: question-answer
           contentType: application/json
