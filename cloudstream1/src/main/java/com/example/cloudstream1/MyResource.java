@@ -17,7 +17,7 @@ import java.util.UUID;
 @RestController
 @EnableBinding(QuestionStream.class)
 public class MyResource {
-    Map<String, MonoProcessor<String>> completableFutures = new HashMap<>();
+    Map<String, MonoProcessor<String>> processors = new HashMap<>();
 
     @Autowired
     QuestionStream myStream;
@@ -33,13 +33,13 @@ public class MyResource {
 
     @StreamListener(QuestionStream.INPUT)
     public void handle(AnswerEvent answer) {
-        completableFutures.get(answer.getQuestionId()).onNext(answer.getAnswer());
+        processors.get(answer.getQuestionId()).onNext(answer.getAnswer());
         System.out.println("Got answer: " + answer);
     }
 
     private Processor<String, String> createFuture(String uuid) {
         MonoProcessor<String> future = MonoProcessor.create();
-        completableFutures.put(uuid, future);
+        processors.put(uuid, future);
         return future;
     }
 
